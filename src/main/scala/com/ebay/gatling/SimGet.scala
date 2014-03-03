@@ -21,7 +21,7 @@ class SimGet extends Simulation {
   val rampRateInj = rampRate(1 usersPerSec) to (3 usersPerSec) during (3 seconds)
 
   // setup
-  setUp(onceScn inject(rampRateInj, constInj))
+  setUp(onceScn inject atOnceInj)
 }
 
 object SimGet extends App {
