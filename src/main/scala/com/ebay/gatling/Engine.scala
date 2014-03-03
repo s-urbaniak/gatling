@@ -4,12 +4,13 @@ import io.gatling.app.Gatling
 import io.gatling.core.config.GatlingPropertiesBuilder
 
 object Engine extends App {
+  def apply(cls: Class[_]) = {
+    val props = new GatlingPropertiesBuilder
 
-	val props = new GatlingPropertiesBuilder
-	props.dataDirectory("src/main/resources/data")
-	props.requestBodiesDirectory("src/main/resources/request-bodies")
-  props.resultsDirectory("target/results")
-  props.binariesDirectory("target/scala-2.10/classes")
+    props.resultsDirectory("target/results")
+    props.binariesDirectory("target/scala-2.10/classes")
+    props.simulationClass(cls.getName)
 
-	Gatling.fromMap(props.build)
+    Gatling.fromMap(props.build)
+  }
 }

@@ -5,10 +5,12 @@ import io.gatling.http.Predef._
 
 class SimGet extends Simulation {
   val req = http("_http1").get("http://localhost:8000")
+  val once = scenario("once").exec(req)
+  val oneUser = atOnce(1 users)
 
-  val onceScn = scenario("once").exec(req)
+  setUp(once inject oneUser)
+}
 
-  val atOnceInj = atOnce(1 users)
-
-  setUp(onceScn.inject(atOnceInj))
+object SimGet extends App {
+  Engine(classOf[SimGet])
 }
