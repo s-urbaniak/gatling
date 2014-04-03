@@ -1,4 +1,4 @@
-## A simple gatling template
+## A gentle gatling template
 
 ### Requirements
 
